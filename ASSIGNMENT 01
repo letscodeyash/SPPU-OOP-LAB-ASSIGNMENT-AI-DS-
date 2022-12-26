@@ -1,0 +1,110 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class student
+{
+    public:
+    int roll_no;
+    char div;
+    string dob,name;
+    char classs[5];
+    static int id;
+    void getdata();
+    void display();
+    student() //constructor
+    {
+        roll_no=43;
+        cout<<"constructor runs succesfully!!"<<endl;
+    }
+    student(student &x) //copy constructor
+    {
+        this->div=div;
+        cout<<"copy constructor run succesfully!!"<<endl;
+    }
+    ~student() //destructor
+    {
+        cout<<"destructor runs succesfully!!"<<endl;
+    }
+    static int show() //static function
+    {
+        id++;
+        cout<<id<<endl;
+    }
+    friend class info; //friend class
+
+};
+void student::getdata()
+{
+    cout<<"enter your name: ";
+    cin>>name;
+    cout<<"enter your class: ";
+    cin>>classs;
+    cout<<"enter your division: ";
+    cin>>div;
+    cout<<"enter your roll number: ";
+    cin>>roll_no;
+    cout<<"enter your date of birth: ";
+    cin>>dob;
+}
+void student::display()
+{
+    cout<<"your name is: "<<name<<endl;
+    cout<<"your class is : "<<classs<<endl;
+    cout<<"your division is : "<<div<<endl;
+    cout<<"your roll number is: "<<roll_no<<endl;
+    cout<<"your date of birth is: "<<dob<<endl;
+}
+class info
+{
+    public:
+    string mob_no,tele_no,addh_no,li_no;
+    void takedata()
+    {
+        cout<<"enter phone no :";
+        cin>>mob_no;
+        cout<<"enter licence no :";
+        cin>>li_no;
+        cout<<"enter aadhar no :";
+        cin>>addh_no;
+        cout<<"enter telephone no :";
+        cin>>tele_no;
+    }
+    void showdata()
+    {
+        cout<<"your phone no is : "<<mob_no<<endl;
+        cout<<"your licence no is : "<<li_no<<endl;
+        cout<<"your addhar no is : "<<addh_no<<endl;
+        cout<<"your telephone no is : "<<tele_no<<endl;
+    }
+};
+int student::id;
+
+int main()
+{
+    cout<<"####### wel-come to student database #######"<<endl;
+    student s,*y;
+    info p;
+    student s1(s);
+    s.show();
+    s.getdata();
+    p.takedata();
+    s.display();
+    p.showdata();
+    int n;
+    cout<<"how many records you want :";
+    cin>>n;
+    y=new student[n]; //dynamic memory allocation
+    for(int i=0; i<n;i++)
+    {
+        y[i].getdata();
+
+    }
+    for(int i=0; i<n;i++)
+    {
+        y[i].display();
+        
+    }
+    cout<<"all memory deleted using delete keyword ";
+        delete y;
+
+}
