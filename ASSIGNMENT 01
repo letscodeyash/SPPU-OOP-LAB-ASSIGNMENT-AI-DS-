@@ -1,110 +1,55 @@
 #include<iostream>
-#include<string>
 using namespace std;
-class student
+class complex
 {
+    float real;
+    float imag;
     public:
-    int roll_no;
-    char div;
-    string dob,name;
-    char classs[5];
-    static int id;
-    void getdata();
-    void display();
-    student() //constructor
+    complex()
     {
-        roll_no=43;
-        cout<<"constructor runs succesfully!!"<<endl;
+        real=0;
+        imag=0;
     }
-    student(student &x) //copy constructor
+    friend istream & operator>>(istream & input,complex &t)
     {
-        this->div=div;
-        cout<<"copy constructor run succesfully!!"<<endl;
+        cout<<"enter the real part : ";
+        input>>t.real;
+        cout<<"enter the imaginary part : ";
+        input>>t.imag;
     }
-    ~student() //destructor
+    friend ostream & operator<<(ostream & output,complex &t)
     {
-        cout<<"destructor runs succesfully!!"<<endl;
+        output<<t.real<<" + "<<t.imag<<"i";
     }
-    static int show() //static function
-    {
-        id++;
-        cout<<id<<endl;
-    }
-    friend class info; //friend class
-
+    complex operator+(complex);
+    complex operator*(complex);
 };
-void student::getdata()
+complex complex :: operator+(complex c)
 {
-    cout<<"enter your name: ";
-    cin>>name;
-    cout<<"enter your class: ";
-    cin>>classs;
-    cout<<"enter your division: ";
-    cin>>div;
-    cout<<"enter your roll number: ";
-    cin>>roll_no;
-    cout<<"enter your date of birth: ";
-    cin>>dob;
+    complex temp;
+    temp.real=real+c.real;
+    temp.imag=imag+c.imag;
+    return temp;
 }
-void student::display()
+complex complex :: operator*(complex c)
 {
-    cout<<"your name is: "<<name<<endl;
-    cout<<"your class is : "<<classs<<endl;
-    cout<<"your division is : "<<div<<endl;
-    cout<<"your roll number is: "<<roll_no<<endl;
-    cout<<"your date of birth is: "<<dob<<endl;
+    complex temp;
+    temp.real=(real*c.real)-(imag*c.imag);
+    temp.imag=(imag*c.imag)+(real*c.imag);
+    return temp;
 }
-class info
-{
-    public:
-    string mob_no,tele_no,addh_no,li_no;
-    void takedata()
-    {
-        cout<<"enter phone no :";
-        cin>>mob_no;
-        cout<<"enter licence no :";
-        cin>>li_no;
-        cout<<"enter aadhar no :";
-        cin>>addh_no;
-        cout<<"enter telephone no :";
-        cin>>tele_no;
-    }
-    void showdata()
-    {
-        cout<<"your phone no is : "<<mob_no<<endl;
-        cout<<"your licence no is : "<<li_no<<endl;
-        cout<<"your addhar no is : "<<addh_no<<endl;
-        cout<<"your telephone no is : "<<tele_no<<endl;
-    }
-};
-int student::id;
 
 int main()
 {
-    cout<<"####### wel-come to student database #######"<<endl;
-    student s,*y;
-    info p;
-    student s1(s);
-    s.show();
-    s.getdata();
-    p.takedata();
-    s.display();
-    p.showdata();
-    int n;
-    cout<<"how many records you want :";
-    cin>>n;
-    y=new student[n]; //dynamic memory allocation
-    for(int i=0; i<n;i++)
-    {
-        y[i].getdata();
-
-    }
-    for(int i=0; i<n;i++)
-    {
-        y[i].display();
-        
-    }
-    cout<<"all memory deleted using delete keyword ";
-        delete y;
-
+    complex c1,c2,c3,c4;
+    cout<<"enter the first number  :"<<endl;
+    cin>>c1;
+    cout<<"enter the second number :"<<endl;
+    cin>>c2;
+    c3=c1+c2;
+    c4=c1*c2;
+    cout<<"first number is : "<<c1<<endl;
+    cout<<"second number is : "<<c2<<endl;
+    cout<<"addition of two complex number is : "<<c3<<endl;
+    cout<<"multiplication of two complex number is  : "<<c4<<endl;
 }
