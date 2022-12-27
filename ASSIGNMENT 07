@@ -1,1 +1,35 @@
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+int main()
+{
+typedef map<string,int> mapType;
+mapType populationmap;
+populationmap.insert(pair<string, int>("Maharashtra",922233));
+populationmap.insert(pair<string, int>("Rajasthan",273457));
+populationmap.insert(pair<string, int>("Hariyana",675849));
+populationmap.insert(pair<string, int>("Gujrat",456732));
+populationmap.insert(pair<string, int>("Biahr",878564));
+mapType::iterator iter;
+string state;
+cout<<"\nEnter that state for population : ";
+cin>>state;
+iter = populationmap.find(state);
+if( iter != populationmap.end() )
+{
+cout << state <<" populations is "<< iter->second;
+}
+else{
+cout << "State not found ";
+}
+populationmap.clear();
+
+
+}
+
+OUTPUT:-
+
+Enter that state for population : Gujrat
+Gujrat populations is 456732
 
