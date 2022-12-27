@@ -1,1 +1,27 @@
-
+#include<iostream>
+#include<fstream>
+#include<string>
+using namespace std;
+int main()
+{
+    ofstream file;
+    file.open("yash.txt",ios::out);
+    string ch;
+    string name;
+    cout<<"enter the name : ";
+    cin>>name;
+    int roll_no;
+    cout<<"enter the roll number : ";
+    cin>>roll_no;
+    file<<name;
+    file<<roll_no;
+    file.close();
+    ifstream file1;
+    file1.open("yash.txt",ios::in);
+    while(!file1.eof())
+    {
+        file1>>ch;
+        cout<<ch;
+    }
+    file1.close();
+}
