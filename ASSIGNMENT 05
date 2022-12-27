@@ -1,1 +1,49 @@
-
+#include<iostream>
+using namespace std;
+template <class T>
+void selection_sort(T arr[5])
+{
+    T temp;
+    for(int i=1;i<=5;i++)
+    {
+        for(int j=i+1;j<=5;j++)
+        {
+            if (arr[i]>arr[j])
+            {
+                temp=arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+            }
+        }
+    }
+}
+int main()
+{
+    int arr[5];
+    float brr[5];
+    cout<<"input for integer values :\n";
+    for(int i=1;i<=5;i++)
+    {
+        cout<<"enter the "<<i<<" value : ";
+        cin>>arr[i];
+    }
+    cout<<"input for integer values :\n";
+    for(int i=1;i<=5;i++)
+    {
+        cout<<"enter the "<<i<<" value : ";
+        cin>>brr[i];
+    }
+    selection_sort(arr);
+    cout<<"sorting array of integer values : ";
+    for(int i=1;i<=5;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+    selection_sort(brr);
+    cout<<"sorting array of floating values : ";
+    for(int i=1;i<=5;i++)
+    {
+        cout<<brr[i]<<" ";
+    }
+}
