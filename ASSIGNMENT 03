@@ -1,61 +1,89 @@
 #include<iostream>
 #include<string>
 using namespace std;
- class publication
- {
-    public:
+
+class publication
+{
     string title;
     float price;
+    public:
     void getdata()
     {
-        cout<<"enter the title :";
+        cout<<"enter thr name of book : ";
         cin>>title;
-        cout<<"enter the price: ";
+        cout<<"enter the price of book : ";
         cin>>price;
     }
     void display()
     {
-        cout<<"your title of book is: "<<title<<endl;
-        cout<<"book price is: "<<price<<endl;
+        cout<<"tile of book  is : "<<title<<endl;
+        cout<<"price of the book is : "<<price<<endl;
     }
- };
- class book : public publication
- {
+};
+class page : public publication
+{
+    public:
     int page_count;
-    public:
     void takedata()
-    {
-        cout<<"enter the number of pages : ";
-        cin>>page_count;
-    }
-    void showdata()
-    {
-        cout<<"number of pages of book are : "<<page_count<<endl;
-    }
- };
- class tape : public publication
- {
-    float time;
+        {
+            try
+            {
+                cout<<"enter the page count of book : ";
+                cin>>page_count;
+                if(page_count<=0)
+                {
+                    throw page_count;
+                }
+            }
+            catch(...)
+            {
+                cout<<"enter valid page count !! "<<endl;
+            }
+        }    
+     void showdata()
+     {
+        cout<<"page count of the book  is : "<<page_count<<endl;
+     }   
+};
+class tape : public publication
+{
     public:
+    int play_time;
     void input()
     {
-        cout<<"enter the time in hrs : ";
-        cin>>time;
+        try
+        {
+            cout<<"enter the play time of the book : ";
+            cin>>play_time;
+            if(play_time<=0)
+            {
+                throw play_time;
+            }
+        }
+        catch(...)
+        {
+            cout<<"enter the valid play time : ";
+        }
     }
+    
     void output()
     {
-        cout<<"time count of book is in hours: "<<time<<endl;
+        cout<<"play time of the book is  : "<<play_time<<endl;
     }
- };
- int main()
- {
-    book b;
+};
+    
+int main()
+{
+    page p;
     tape t;
-    b.getdata();
-    b.takedata();
+    
+    p.getdata();
+    p.takedata();
     t.input();
-    b.display();
-    b.showdata();
+    cout<<"----------------------------------------\n";
+    p.display();
+    p.showdata();
     t.output();
- }
- 
+    cout<<"---------------------------------------------\n";
+
+}
