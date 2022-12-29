@@ -35,7 +35,7 @@ complex complex :: operator*(complex c)
 {
     complex temp;
     temp.real=(real*c.real)-(imag*c.imag);
-    temp.imag=(imag*c.imag)+(real*c.imag);
+    temp.imag=(real*c.imag)+(imag*c.real);
     return temp;
 }
 
